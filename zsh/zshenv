@@ -9,6 +9,7 @@ BREWPREFIX=$(brew --prefix)
 
 path=(
 	$HOME/.rbenv/bin(N-/)
+	$HOME/.gobrew/bin(N-/)
 	$HOME/.nodebrew/current/bin(N-/)
 	/Applications/android/android-sdk-macosx/platform-tools(N-/)
 	$path
@@ -22,4 +23,9 @@ fpath=(
 # rbenv用
 if builtin command -v rbenv > /dev/null; then
   eval "$(rbenv init - zsh)"
+fi
+
+# gobrew用
+if builtin command -v gobrew > /dev/null; then
+	eval "$(gobrew init - zsh)"
 fi
