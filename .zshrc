@@ -1,0 +1,196 @@
+####################################
+# 環境変数
+####################################
+export LANG=ja_JP.UTF-8
+export EDITOR=vim
+
+####################################
+# エイリアス
+####################################
+alias cd=' cd'
+alias ..=' cd ..; ls'
+alias ...=' cd ..; cd ..; ls'
+alias ....=' cd ..; cd ..; cd ..; ls'
+alias cd..='..'
+alias cd...='...'
+alias cd....='....'
+alias ls=' ls'
+alias ll='ls -lF'
+alias la='ls -A'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias vi='vim'
+alias k9='kill -9'
+alias -g L='| less'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g GI='| grep -i'
+alias -g STOU="| iconv --from-code=SHIFT-JIS --to-code=UTF-8"
+alias -g UTOS="| iconv --from-code=UTF-8 --to-code=SHIFT-JS"
+alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+case ${OSTYPE} in
+	darwin*)
+		alias docdir='cd $HOME/Documents'
+		alias visible='defaults write com.apple.finder AppleShowAllFiles true;killall Finder'
+		alias invisible='defaults write com.apple.finder AppleShowAllFiles falese;killall Finder'
+		alias delds='sudo find / -name ".DS_Store" -delete' # .DS_Storeファイルを全て削除
+		alias -g C='| pbcopy' # 標準出力をクリップボードにコピー
+		;;
+	linux*)
+		alias -g C='| xsel --input --clipboard'  # 標準出力をクリップボードにコピー
+		;;
+esac
+
+####################################
+# 基本
+####################################
+# C-Dでログアウトしない
+setopt ignoreeof
+# コマンドのスペルチェックをする
+setopt correct
+# コマンドの引数までスペルチェックをする
+setopt correct_all
+# ディレクトリ名でcdする
+setopt auto_cd
+# 日本語ファイル名を表示可能にする
+setopt print_eight_bit
+# ビープ音を消す
+setopt nolistbeep
+#ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
+setopt mark_dirs
+# #,~,^をワイルドカードとして利用する
+setopt extended_glob
+# 単語の一部として扱われる文字セット
+# 削除した文字列: /
+# 追加した文字: なし
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+####################################
+# 補完関する設定
+####################################
+autoload -Uz compinit; compinit
+# 補完候補を一覧表示
+setopt auto_list
+# TABで補完候補を切り替える
+setopt auto_menu
+## カッコの対応などを自動的に補完
+setopt auto_param_keys
+# =commandをcommandのパス名に展開する
+setopt equals
+# --prefix=/usrなどの=以降も補完
+setopt magic_equal_subst
+#shift+tabで補完候補の逆送り
+bindkey "^[[Z" reverse-menu-complete
+# 補完時に大文字小文字を区別しない
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# プロセス名の補完
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+# ..<TAB>で../
+zstyle ':completion:*' special-dirs true
+
+####################################
+# ヒストリに関する設定
+####################################
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+# ヒストリの見た目
+HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
+#ヒストリファイルを上書きするのではなく、追加するようにする
+setopt append_history
+# コマンドがスペースで始まる場合，コマンド履歴に追加しない
+setopt hist_ignore_space
+# 直前と同じコマンドはヒストリに追加しない
+setopt hist_ignore_dups
+#他のシェルのヒストリをリアルタイムで共有する
+setopt share_history
+#余分なスペースを削除してヒストリに保存する
+setopt hist_reduce_blanks
+
+# ディレクトリスタックのプッシュ
+setopt auto_pushd
+# 直前と同じディレクトリはひすとりに追加しない
+setopt pushd_ignore_dups
+# ディレクトリヒストリのスタック数
+DIRSTACKSIZE=10
+
+####################################
+# 見た目に関する設定
+####################################
+# 色を使用出来るようにする
+autoload -Uz colors; colors
+# 色の設定
+export LSCOLORS=Exfxcxdxbxegedabagacad
+# 補完時の色の設定
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+# ZLS_COLORS
+export ZLS_COLORS=$LS_COLORS
+# lsコマンド時、自動で色がつく(ls -Gのようなもの？)
+export CLICOLOR=true
+# 補完候補に色を付ける
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# プロンプトに色を付ける
+autoload -U colors; colors
+# プロンプト見た目
+PROMPT='[%n@%m:%~]%# '
+
+####################################
+# キーバインド
+####################################
+bindkey -e # emacs風なキーバインド
+bindkey '^L' forward-word
+bindkey '^H' backward-word
+bindkey '^J' history-beginning-search-backward
+bindkey '^K' history-beginning-search-forward
+bindkey '^D' delete-word
+
+####################################
+# Wigets
+####################################
+# コマンドの存在チェック
+function exists { which $1 &> /dev/null }
+
+# cdコマンド実行後，lsを実行する
+function cd() { builtin cd $@ && ls; }
+
+# C-^で一つ上のディレクトリへ移動
+function cdup() {
+	echo
+	cd ..
+	zle reset-prompt
+}
+zle -N cdup
+bindkey '^^' cdup
+
+# sudo補完
+function run-with-sudo() { LBUFFER="sudo $LBUFFER" }
+zle -N run-with-sudo
+bindkey '^X' run-with-sudo
+
+# percolによるヒストリの選択
+if exists percol; then
+	# ヒストリの選択
+    function percol_select_history() {
+        local tac
+        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+    }
+
+	# ディレクトリヒストリの選択
+	function percol_select_dirstack_entry() {
+    	BUFFER=$(dirs -pl | percol --query "$LBUFFER")
+    	CURSOR=$#BUFFER
+    	zle -R -c
+	}
+
+    zle -N percol_select_history
+	bindkey '^R' percol_select_history
+
+	zle -N percol_select_dirstack_entry
+	bindkey '^S' percol_select_dirstack_entry
+fi
