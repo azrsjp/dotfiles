@@ -1,0 +1,21 @@
+[core]
+	excludesfile = ~/.gitignore_global
+[include]
+	path = ~/.gitconfig_local
+[color]
+	ui = auto
+[alias]
+	st = status
+	sh = show
+	cm = commit
+	co = checkout
+	df = diff
+	br = branch
+	tags = tag -l
+	lg = log --graph --all --decorate --abbrev-commit --branches --date=short --pretty=format:\"%C(red)%h%C(reset) %C(green)[%ad]%C(reset) %s %C(cyan)@%an%C(reset) %C(yellow)%d%C(reset)
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
