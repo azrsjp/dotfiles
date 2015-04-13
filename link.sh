@@ -5,3 +5,4 @@ ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim/colors ~/.vim
 ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/git/gitignore_global ~/.gitignore_global
+ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
