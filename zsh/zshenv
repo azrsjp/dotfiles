@@ -11,6 +11,7 @@ path=(
 	$HOME/.rbenv/bin(N-/)
 	$HOME/.gobrew/bin(N-/)
 	$HOME/.nodebrew/current/bin(N-/)
+	/Applications/android/android-sdk-macosx/tools(N-/)
 	/Applications/android/android-sdk-macosx/platform-tools(N-/)
 	$path
 )
