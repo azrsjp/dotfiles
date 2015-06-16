@@ -8,9 +8,9 @@ export EDITOR=vim
 # エイリアス
 ####################################
 alias cd=' cd'
-alias ..=' cd ..; ls'
-alias ...=' cd ..; cd ..; ls'
-alias ....=' cd ..; cd ..; cd ..; ls'
+alias ..=' cd ..;'
+alias ...=' cd ..; cd ..;'
+alias ....=' cd ..; cd ..; cd ..;'
 alias cd..='..'
 alias cd...='...'
 alias cd....='....'
