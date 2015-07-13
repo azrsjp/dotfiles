@@ -22,11 +22,11 @@ fpath=(
 )
 
 # rbenv用
-if builtin command -v rbenv > /dev/null; then
-  eval "$(rbenv init - zsh)"
+if which rbenv > /dev/null 2>&1; then
+	eval "$(rbenv init - zsh)"
 fi
 
 # gobrew用
-if builtin command -v gobrew > /dev/null; then
+if which gobrew > /dev/null 2>&1; then
 	eval "$(gobrew init - zsh)"
 fi
