@@ -5,7 +5,9 @@
 typeset -U path cdpath fpath manpath
 
 # homebrewのベースパス
-BREWPREFIX=$(brew --prefix)
+if which brew > /dev/null 2>&1; then
+	BREWPREFIX=$(brew --prefix)
+fi
 
 path=(
 	$HOME/.rbenv/bin(N-/)
