@@ -192,7 +192,7 @@ if exists percol; then
 	bindkey '^R' percol_select_history
 
 	zle -N percol_select_dirstack_entry
-	bindkey '^S' percol_select_dirstack_entry
+	bindkey '^D' percol_select_dirstack_entry
 fi
 export PATH="$HOME/.gobrew/bin:$PATH"
 eval "$(gobrew init -)"
