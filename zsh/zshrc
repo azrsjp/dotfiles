@@ -50,9 +50,9 @@ esac
 # C-Dでログアウトしない
 setopt ignoreeof
 # コマンドのスペルチェックをする
-setopt correct
-# コマンドの引数までスペルチェックをする
-setopt correct_all
+unsetopt correct
+unsetopt correct_all
+
 # ディレクトリ名でcdする
 setopt auto_cd
 # 日本語ファイル名を表示可能にする
@@ -196,3 +196,5 @@ if exists percol; then
 fi
 export PATH="$HOME/.gobrew/bin:$PATH"
 eval "$(gobrew init -)"
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

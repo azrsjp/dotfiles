@@ -15,6 +15,7 @@ path=(
 	$HOME/.nodebrew/current/bin(N-/)
 	/Applications/android/android-sdk-macosx/tools(N-/)
 	/Applications/android/android-sdk-macosx/platform-tools(N-/)
+	/Applications/android/android-ndk-r10e(N-/)
 	$path
 )
 
