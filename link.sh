@@ -1,8 +1,12 @@
 #!/bin/sh
-ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
-ln -sf ~/dotfiles/zsh/zshenv ~/.zshenv
-ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
-ln -sf ~/dotfiles/vim/colors ~/.vim/colors
-ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
-ln -sf ~/dotfiles/git/gitignore_global ~/.gitignore_global
-ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+FILE_DIR=$(cd $(dirname $0) && pwd)
+
+ln -sf $FILE_DIR/zsh/zshrc ~/.zshrc
+ln -sf $FILE_DIR/zsh/zshenv ~/.zshenv
+ln -sf $FILE_DIR/fish/config.fish ~/.config/fish/config.fish
+ln -sf $FILE_DIR/fish/fishfile ~/.config/fish/fishfile
+ln -sf $FILE_DIR/vim/vimrc ~/.vimrc
+ln -sf $FILE_DIR/vim/colors ~/.vim/colors
+ln -sf $FILE_DIR/git/gitconfig ~/.gitconfig
+ln -sf $FILE_DIR/git/gitignore_global ~/.gitignore_global
+ln -sf $FILE_DIR/tmux/tmux.conf ~/.tmux.conf
