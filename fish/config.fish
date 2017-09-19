@@ -12,6 +12,9 @@ rbenv rehash >/dev/null ^&1
 # nodebrew
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 
+# vscode
+set -x PATH /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin $PATH
+
 # alias
 balias o open
 balias g git
