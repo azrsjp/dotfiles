@@ -15,12 +15,23 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 # vscode
 set -x PATH /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin $PATH
 
+# android
+set -x ANDROID_HOME $HOME/Library/Android/sdk
+set -x PATH $ANDROID_HOME/tools $PATH
+set -x PATH $ANDROID_HOME/platform-tools $PATH
+
 # alias
 balias o open
 balias g git
 balias t tig
 balias dot-visible 'defaults write com.apple.finder AppleShowAllFiles true;killall Finder'
 balias dot-invisible 'defaults write com.apple.finder AppleShowAllFiles falese;killall Finder'
+
+# vscode
+function code
+  set location "$PWD/$argv"
+  open -n -b "com.microsoft.VSCode" --args $location --disable-gpu
+end
 
 # key binding
 function fish_user_key_bindings
