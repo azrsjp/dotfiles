@@ -1,5 +1,6 @@
 #!/bin/sh
 FILE_DIR=$(cd $(dirname $0) && pwd)
+mkdir -p ~/.vim
 
 ln -sf $FILE_DIR/zsh/zshrc ~/.zshrc
 ln -sf $FILE_DIR/zsh/zshenv ~/.zshenv
