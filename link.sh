@@ -5,7 +5,7 @@ mkdir -p ~/.vim
 ln -sf $FILE_DIR/zsh/zshrc ~/.zshrc
 ln -sf $FILE_DIR/zsh/zshenv ~/.zshenv
 ln -sf $FILE_DIR/fish/config.fish ~/.config/fish/config.fish
-ln -sf $FILE_DIR/fish/fishfile ~/.config/fish/fishfile
+ln -sf $FILE_DIR/fish/fish_plugins ~/.config/fish/fish_plugins
 ln -sf $FILE_DIR/vim/vimrc ~/.vimrc
 ln -sf $FILE_DIR/vim/colors ~/.vim/colors
 ln -sf $FILE_DIR/git/gitconfig ~/.gitconfig
