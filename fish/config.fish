@@ -9,7 +9,6 @@ if not functions -q fisher
 end
 
 # homebrew
-set -x PATH /usr/local/bin /usr/local/sbin $PATH
 
 # rbenv
 source (rbenv init - | psub)
@@ -17,6 +16,7 @@ set -x PATH $HOME/.rbenv/shims $PATH
 
 # nodebrew
 set -x PATH $HOME/.nodebrew/current/bin $PATH
+set -x PATH /opt/homebrew/bin $PATH
 
 # vscode
 set -x PATH /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin $PATH
